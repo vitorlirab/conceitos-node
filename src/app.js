@@ -1,9 +1,6 @@
 const express = require("express");
 const cors = require("cors");
-const { v4: uuidv4 } = require('uuid');
-
-
-// const { uuid } = require("uuidv4");
+const { uuid } = require("uuidv4");
 
 const app = express();
 
@@ -20,7 +17,7 @@ app.post("/repositories", (request, response) => {
   const { title, url, techs } = request.body;
 
   const data = {
-    id: uuidv4(),
+    id: uuid(),
     title,
     url,
     techs,
@@ -40,7 +37,7 @@ app.put("/repositories/:id", (request, response) => {
   if (repositoryIndex < 0) {
     return response.status(400).json({ error: 'Repository not found' })
   }
- 
+
   const { likes } = repositories[repositoryIndex];
   const data = {
     id,
